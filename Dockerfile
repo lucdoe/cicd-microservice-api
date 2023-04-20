@@ -2,10 +2,13 @@
 FROM node:14-alpine AS build
 
 COPY package*.json ./
+COPY tsconfig.json ./
+
 RUN npm install
-CMD ["tsc"]
 
 COPY . .
+
+RUN npm run build
 
 # --- Production stage ---
 FROM node:14-alpine
