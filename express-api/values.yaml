@@ -1,0 +1,43 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 3
+
+image:
+  repository: lucdoe/express-api
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+mongodb:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: true
+    rootPassword: my-password
+    username: my-user
+    password: my-password
+    database: my-database
+  persistence:
+    size: 10Gi
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: true
+    password: my-password
+  master:
+    persistence:
+      size: 1Gi
+
+certManager:
+  enabled: true
+  installCRDs: true
+  email: doerrstein.lucca@yahoo.de
+
+ingress-nginx:
+  enabled: true
+  annotations: {}
+  hostname: lucdoe.de
+  certManager:
+    clusterIssuer: letsencrypt-prod
