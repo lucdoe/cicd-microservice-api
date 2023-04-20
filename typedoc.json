@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["src/**/*.ts", "src/*.ts", "src/**/**/.ts"],
+  "out": "docs",
+  "name": "Express.js API",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "tsconfig": "./tsconfig.json"
+}

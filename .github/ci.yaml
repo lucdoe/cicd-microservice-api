@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+
+description: |
+  This workflow will build a new container image and will then deploy it.
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+  BuildAndPush:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Docker image
+        run: docker build -t lucdoe/express-api:latest .
+      - name: Login to Docker registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Push Docker image
+        run: docker push lucdoe/express-api:latest
