@@ -3,6 +3,7 @@ FROM node:14-alpine AS build
 
 COPY package*.json ./
 RUN npm install
+CMD ["tsc"]
 
 COPY . .
 
