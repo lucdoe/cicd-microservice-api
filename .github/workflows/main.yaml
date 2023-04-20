@@ -1,8 +1,5 @@
 name: CI/CD Pipeline
 
-description: |
-  This workflow will build a new container image and will then deploy it.
-
 on:
   push:
     branches:
@@ -11,6 +8,7 @@ on:
     branches:
       - main
 
+jobs:
   BuildAndPush:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
