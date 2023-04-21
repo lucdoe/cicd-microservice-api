@@ -50,9 +50,9 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    secretName: express-api-tls
-    hosts:
-      - lucdoe.de
+    - hosts:
+        - lucdoe.de
+      secretName: express-api-tls
 
 resources: {}
 
