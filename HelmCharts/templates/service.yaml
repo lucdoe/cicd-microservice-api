@@ -4,10 +4,10 @@ metadata:
   name: {{include "express-api.fullname" .}}
   labels: {{- include "express-api.labels" . | nindent 4}}
 spec:
-  type: ClusterIP
+  type: {{.Values.service.type}}
   ports:
-    - name: http
-      port: 3000
+    - port: {{.Values.service.port}}
       targetPort: 3000
       protocol: TCP
+      name: http
   selector: {{- include "express-api.selectorLabels" . | nindent 4}}
