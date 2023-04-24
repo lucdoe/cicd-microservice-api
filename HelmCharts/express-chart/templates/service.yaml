@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{include "express-api.fullname" .}}
+  namespace: {{.Release.Namespace}}
   labels: {{- include "express-api.labels" . | nindent 4}}
 spec:
   type: {{.Values.service.type}}

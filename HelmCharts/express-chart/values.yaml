@@ -10,7 +10,8 @@ image:
   tag: "latest"
 
 imagePullSecrets:
-  - name: my-secret
+  - name: docker-secret
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -58,16 +59,21 @@ resources: {}
 
 autoscaling:
   enabled: false
-  minReplicas: 1
+  minReplicas: 3
   maxReplicas: 25
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+dockersecret:
+  enabled: true
+  name: docker-secret
+  dockerConfigJson: ewogICAgImF1dGhzIjogewogICAgICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICAgICAgICJ1c2VybmFtZSI6ICJsdWNkb2UiLAogICAgICAgICAgICAicGFzc3dvcmQiOiAiZGNrcl9wYXRfdF95Q2VBNlJ4MlN2T1BENFV6MnlDYlFHMllvIiwKICAgICAgICAgICAgImVtYWlsIjogImx1Y2NhLmRvZXJyc3RlaW5AY29kZS5iZXJsaW4iLAogICAgICAgICAgICAiYXV0aCI6ICJiSFZqWkc5bE9tUmphM0pmY0dGMFgzUmZlVU5sUVRaU2VESlRkazlRUkRSVmVqSjVRMkpSUnpKWmJ3PT0iCiAgICAgICAgfQogICAgfQp9
 
 mongodb:
   enabled: true
@@ -80,6 +86,7 @@ mongodb:
     database: my-database
   persistence:
     size: 10Gi
+  resources: {}
 
 redis:
   enabled: true
@@ -90,15 +97,11 @@ redis:
   master:
     persistence:
       size: 1Gi
+  resources: {}
 
 certManager:
   enabled: true
   installCRDs: true
   email: doerrstein.lucca@yahoo.de
-
-ingress-nginx:
-  enabled: true
-  annotations: {}
-  hostname: lucdoe.de
-  certManager:
-    clusterIssuer: letsencrypt-prod
+  server: https://acme-v02.api.letsencrypt.org/directory
+  privateKeySecretRefName: letsencrypt-prod-private-key
