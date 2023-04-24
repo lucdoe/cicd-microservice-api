@@ -1,26 +1,20 @@
 {
-  "name": "express-ts-boilerplate",
+  "name": "express-api",
   "version": "0.0.1",
-  "description": "A boilerplate structure for an scalable Express.js Backend with TypeScript and JS Standard Linter.",
+  "description": "A Express.js Backend with TypeScript and JS Standard Linter.",
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "lint": "npx eslint ./src --ext .ts --fix",
-    "start": "NODE_ENV=production node dist/server.js",
     "predev": "npm run lint && tsc",
     "dev": "nodemon --watch src dist/server.js",
+    "start": "NODE_ENV=production node dist/server.js",
     "docs": "typedoc",
-    "load-test": "k6 run load-test.js",
-    "build:docker": "npm run lint && tsc && docker build -t express-ts-boilerplate .",
-    "run:docker": "docker run -p 3000:3000 --rm --name express-container express-ts-boilerplate",
-    "compose:docker": "tsc && docker-compose up",
-    "down:docker": "docker-compose down",
-    "stop:docker": "docker stop express-container",
-    "remove:docker": "docker rm express-container"
+    "load-test": "k6 run load-test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucdoe/express-ts-boilerplate.git"
+    "url": "git+https://github.com/lucdoe/express-api.git"
   },
   "keywords": [
     "expressjs",
@@ -29,10 +23,7 @@
   ],
   "author": "lucdoe",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lucdoe/express-ts-boilerplate/issues"
-  },
-  "homepage": "https://github.com/lucdoe/express-ts-boilerplate#readme",
+  "homepage": "https://github.com/lucdoe/express-api#readme",
   "dependencies": {
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
