@@ -132,3 +132,5 @@ build
 .pnp.*
 
 .scannerwork
+
+.notes/
