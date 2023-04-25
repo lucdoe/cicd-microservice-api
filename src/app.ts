@@ -11,6 +11,7 @@ app.use(sanitizeHeadersAndQueryParams)
 app.use(json({limit: '20mb'}))
 app.use(urlencoded({extended: true, limit: '20mb'}))
 app.use(sanitizeBodys)
+app.disable('x-powered-by')
 
 app.get('/', (req, res) => {
   res.status(200).json({message: 'Hello, world!'})
