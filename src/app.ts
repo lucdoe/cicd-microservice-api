@@ -13,12 +13,12 @@ app.use(urlencoded({extended: true, limit: '20mb'}))
 app.use(sanitizeBodys)
 app.disable('x-powered-by')
 
-app.get('/', (req, res) => {
-  res.status(200).json({message: 'Hello, world!'})
-})
 app.use('/feature', featureRouter)
 app.get('/health', (req, res) => {
   res.status(200).json({status: 'Healthy', timestamp: new Date().toISOString()})
+})
+app.get('/', (req, res) => {
+  res.status(200).json({message: 'Hello, from a Microservice in Kubernetes!'})
 })
 
 export default app
