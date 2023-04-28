@@ -102,12 +102,14 @@ jobs:
           npm install 
           npm run build
 
-      - name: Setup Google Cloud SDK and authenticate
-        uses: google-github-actions/setup-gcloud@v0.3.0
+      - id: "auth"
+        uses: "google-github-actions/auth@v1"
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
+          workload_identity_provider: "projects/980754338517/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: ${{ secrets.SERVICE_ACCOUNT_MAIL }}}
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
 
       - name: Generate and Upload Typedoc to GCP Bucket
         run: |
