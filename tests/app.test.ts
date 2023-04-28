@@ -6,6 +6,8 @@ describe('API Endpoints', () => {
     const res = await request(app).get('/')
     expect(res.status).toEqual(200)
     expect(res.body).toHaveProperty('message')
-    expect(res.body.message).toEqual('Hello, world!')
+    expect(res.body.message).toEqual(
+      'Hello, from a Microservice in Kubernetes!',
+    )
   })
 })
