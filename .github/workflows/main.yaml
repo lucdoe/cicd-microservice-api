@@ -91,6 +91,9 @@ jobs:
           tags: lucdoe/express-api:latest
 
   deploy:
+    permissions:
+      contents: "read"
+      id-token: "write"
     needs: build
     runs-on: ubuntu-latest
     steps:
